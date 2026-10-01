@@ -4,6 +4,7 @@
 
 function objectValues(object) {
 	// CODE HERE
+	return Object.values(object);
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -12,6 +13,7 @@ function objectValues(object) {
 
 function keysToString(object){
 	// CODE HERE
+	return Object.keys(object).join(" ");
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -20,6 +22,9 @@ function keysToString(object){
 
 function valuesToString(object) {
 	// CODE HERE
+    return Object.values(object)
+        .filter(value => typeof value === 'string')
+        .join(" ");
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -28,6 +33,10 @@ function valuesToString(object) {
 
 function arrayOrObject(collection) {
 	// CODE HERE
+    if (Array.isArray(collection)) {
+        return 'array';
+    }
+    return 'object';
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -36,6 +45,7 @@ function arrayOrObject(collection) {
 
 function capitalizeWord(string) {
 	// CODE HERE
+	return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -44,6 +54,10 @@ function capitalizeWord(string) {
 
 function capitalizeAllWords(string) {
 	// CODE HERE
+	return string
+        .split(" ")
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -52,6 +66,8 @@ function capitalizeAllWords(string) {
 
 function welcomeMessage(object) {
 	// CODE HERE
+	var name = object.name.charAt(0).toUpperCase() + object.name.slice(1);
+    return "Welcome " + name + "!";
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -60,6 +76,9 @@ function welcomeMessage(object) {
 
 function profileInfo(object) {
 	// CODE HERE
+	var name = object.name.charAt(0).toUpperCase() + object.name.slice(1);
+    var species = object.species.charAt(0).toUpperCase() + object.species.slice(1);
+    return name + " is a " + species;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -68,6 +87,10 @@ function profileInfo(object) {
 
 function maybeNoises(object) {
 	// CODE HERE
+	if (Array.isArray(object.noises) && object.noises.length > 0) {
+        return object.noises.join(" ");
+    }
+    return "there are no noises";
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -76,6 +99,7 @@ function maybeNoises(object) {
 
 function hasWord(string, word) {
 	// CODE HERE
+	return string.split(" ").includes(word);
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -84,6 +108,8 @@ function hasWord(string, word) {
 
 function addFriend(name, object) {
 	// CODE HERE
+	object.friends.push(name);
+	return object;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -92,6 +118,10 @@ function addFriend(name, object) {
 
 function isFriend(name, object) {
 	// CODE HERE
+	if (Array.isArray(object.friends)) {
+        return object.friends.includes(name);
+    }
+    return false;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -100,6 +130,16 @@ function isFriend(name, object) {
 
 function nonFriends(name, array) {
 	// CODE HERE
+	var result = [];
+    for (var i = 0; i < array.length; i++) {
+        var person = array[i];
+        if (person.name !== name) {
+            if (!person.friends || !person.friends.includes(name)) {
+                result.push(person.name);
+            }
+        }
+    }
+    return result;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -108,6 +148,8 @@ function nonFriends(name, array) {
 
 function updateObject(object, key, value) {
 	// CODE HERE
+	object[key] = value;
+	return object;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -116,6 +158,10 @@ function updateObject(object, key, value) {
 
 function removeProperties(object, array) {
 	// CODE HERE
+	for (var i = 0; i < array.length; i++) {
+        delete object[array[i]];
+    }
+    return object;
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -124,6 +170,7 @@ function removeProperties(object, array) {
 
 function dedup(array) {
 	// CODE HERE
+	return Array.from(new Set(array));
 }
 
 //////////////////////////////////////////////////////////////////////
